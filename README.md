@@ -30,6 +30,8 @@ Filter Material by KemonoId:
 
 ### 
 
+----------
+
 ### HTTP Methods
 
 **Kemono**
@@ -46,9 +48,13 @@ PUT: api/Material/5
 POST: api/Material
 DELETE: api/Material/5
 
+----------
+
 ### Controllers
 Kemono controller
 Material controller
+
+----------
 
 ### SQL
 
