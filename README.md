@@ -26,6 +26,8 @@ Filter Kemono by Chapter:
 Filter Material by KemonoId:
 ```https://localhost:7066/api/material/kemonoid/1``` 
 
+----------
+
 ### 
 
 ### HTTP Methods
