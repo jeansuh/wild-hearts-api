@@ -1,31 +1,42 @@
 # Wild Hearts API
-
----
+API for EA video game Wild Hearts to look up Kemonos and its materials
 
 ## INSTRUCTION
 
 ### API Endpoints
 
-List all Kemonos
+List all Kemonos:
 ```https://localhost:7066/api/kemono/```
 
-List Kemono by id
+List Kemono by id:
 ```https://localhost:7066/api/kemono/1```
 
-List all Materials
+List all Materials:
 ```https://localhost:7066/api/material```
 
-List Material by id
+List Material by id:
 ```https://localhost:7066/api/material/1```
 
-Filter Kemono by Habitat
+Filter Kemono by Habitat:
 ```https://localhost:7066/api/kemono/habitat/natsukodachi%20isle``` 
 
-Filter Kemono by Chapter
+Filter Kemono by Chapter:
 ```https://localhost:7066/api/kemono/chapter/1``` 
 
-Filter Material by KemonoId
+Filter Material by KemonoId:
 ```https://localhost:7066/api/material/kemonoid/1``` 
 
 ### HTTP Methods
+
+GET: api/Material
+GET: api/Material/5
+PUT: api/Material/5
+POST: api/Material
+DELETE: api/Material/5
+
+GET: api/Kemono
+GET: api/Kemono/5
+PUT: api/Kemono/5
+POST: api/Kemono
+DELETE: api/Kemono/5
 
