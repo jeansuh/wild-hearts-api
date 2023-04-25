@@ -1,10 +1,10 @@
-### Wild Hearts API
+# Wild Hearts API
 
-----------
+---
 
 ## INSTRUCTION
 
-# API Endpoints
+### API Endpoints
 
 List all Kemonos
 ```https://localhost:7066/api/kemono/```
@@ -27,5 +27,5 @@ Filter Kemono by Chapter
 Filter Material by KemonoId
 ```https://localhost:7066/api/material/kemonoid/1``` 
 
-# HTTP Methods
+### HTTP Methods
 
