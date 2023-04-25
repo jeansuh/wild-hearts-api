@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1705.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildHeartsAPI", "WildHeartsAPI\WildHeartsAPI.csproj", "{22E29F83-3ACE-41B7-82E2-0B07B08A4A14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22E29F83-3ACE-41B7-82E2-0B07B08A4A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E29F83-3ACE-41B7-82E2-0B07B08A4A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E29F83-3ACE-41B7-82E2-0B07B08A4A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E29F83-3ACE-41B7-82E2-0B07B08A4A14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0F48897-51C8-4A76-8189-4F27A6A588E4}
+	EndGlobalSection
+EndGlobal
