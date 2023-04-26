@@ -1,5 +1,4 @@
 # Wild Hearts API
-API for EA video game Wild Hearts to look up Kemonos and its materials
 
 ## INTRODUCTION
 Welcome to Wild Hearts API!
@@ -77,6 +76,7 @@ DELETE: api/Material/5
 
 ### Controllers
 Kemono controller
+
 Material controller
 
 ----------
