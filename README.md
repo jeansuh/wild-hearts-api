@@ -26,11 +26,9 @@ Filter Kemono by Chapter:
 Filter Material by KemonoId:
 ```https://localhost:7066/api/material/kemonoid/1``` 
 
-----------
+Look up Material by MaterialName:
+```https://localhost:7066/api/material/materialname/ragetail%20pelt``` 
 
-### 
-
-----------
 
 ### HTTP Methods
 
@@ -48,13 +46,9 @@ PUT: api/Material/5
 POST: api/Material
 DELETE: api/Material/5
 
-----------
-
 ### Controllers
 Kemono controller
 Material controller
-
-----------
 
 ### SQL
 
@@ -71,7 +65,7 @@ Material controller
 2. KemonoId
 
 **Constraints**
-1. KeonoName is uique
+1. KemonoName is uique
 2. MaterialName is not null
 3. KemonoName is not null
 4. Foreign & primary keys

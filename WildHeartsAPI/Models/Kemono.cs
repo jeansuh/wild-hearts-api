@@ -10,7 +10,12 @@ namespace WildHeartsAPI.Models
 		public int Chapter { get; set; }
 		public string Attribute { get; set; }
 		public string Habitat { get; set; }
-		public Material[] MaterialId { get; set; }
-	}
+		public Material[]? MaterialId { get; set; }
+
+        public static implicit operator List<object>(Kemono? v)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 

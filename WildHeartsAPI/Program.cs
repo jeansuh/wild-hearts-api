@@ -16,8 +16,11 @@ app.MapGet("/api/kemono/chapter/{chapter}", async (int chapter, WildHeartsAPIDBC
 app.MapGet("/api/kemono/habitat/{habitat}", async (string habitat, WildHeartsAPIDBContext db) =>
     await db.Kemonos.Where(k => k.Habitat == habitat).ToListAsync());
 
-app.MapGet("/api/materials/{kemonoid}", async (int id, WildHeartsAPIDBContext db) =>
-    await db.Materials.Where(m => m.KemonoId == id).ToListAsync());
+app.MapGet("/api/material/kemonoid/{kemonoid}", async (int kemonoid, WildHeartsAPIDBContext db) =>
+    await db.Materials.Where(m => m.KemonoId == kemonoid).ToListAsync());
+
+app.MapGet("/api/material/materialname/{materialname}", async (string materialname, WildHeartsAPIDBContext db) =>
+    await db.Materials.Where(m => m.MaterialName == materialname).ToListAsync());
 
 if (app.Environment.IsDevelopment())
 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WildHeartsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class MaterialController : ControllerBase
     {
         private readonly WildHeartsAPIDBContext _context;
@@ -20,50 +22,74 @@ namespace WildHeartsAPI.Controllers
             _context = context;
         }
 
-        //[HttpGet("{chapter}")]
-        //public ActionResult<IEnumerable<Material>> MaterialByKemonoId(int Chapter)
-        //{
-        //    _context.
-        //}
-
         //GET: api/Material
-
-       [HttpGet]
-        public async Task<ActionResult<IEnumerable<Material>>> GetMaterials()
+        [HttpGet]
+        public async Task<ActionResult<Models.Response>> GetMaterials()
         {
-          if (_context.Materials == null)
-          {
-              return NotFound();
-          }
-            return await _context.Materials.ToListAsync();
+            var response = new Models.Response();
+            if (_context.Materials == null)
+            {
+                response.StatusCode = 404;
+                response.StatusDescription = "Not Found";
+
+            }
+            else
+            {
+                response.StatusCode = 200;
+                response.StatusDescription = "OK";
+                response.MaterialDatas = await _context.Materials.ToListAsync();
+            }
+
+            return response;
         }
+
 
         // GET: api/Material/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Material>> GetMaterial(int id)
+        public async Task<ActionResult<Models.Response>> GetMaterial(int id)
         {
-          if (_context.Materials == null)
-          {
-              return NotFound();
-          }
+            var response = new Models.Response();
+
+            if (_context.Materials == null)
+                {
+                    response.StatusCode = 404;
+                    response.StatusDescription = "Not Found";
+                }
             var material = await _context.Materials.FindAsync(id);
 
             if (material == null)
             {
-                return NotFound();
+                response.StatusCode = 404;
+                response.StatusDescription = "Not Found";
             }
 
-            return material;
+            if (id < 1 ^ id > 179)
+            {
+                response.StatusCode = 400;
+                response.StatusDescription = "Bad Request";
+            }
+
+            else
+            {
+                response.StatusCode = 200;
+                response.StatusDescription = "OK";
+                response.MaterialData = material;
+            }
+
+            return response;
         }
 
         // PUT: api/Material/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMaterial(int id, Material material)
+        public async Task<ActionResult<Models.Response>> PutMaterial(int id, Material material)
         {
+            var response = new Models.Response();
+
             if (id != material.MaterialId)
             {
-                return BadRequest();
+                response.StatusCode = 400;
+                response.StatusDescription = "Bad Request";
             }
 
             _context.Entry(material).State = EntityState.Modified;
@@ -76,7 +102,8 @@ namespace WildHeartsAPI.Controllers
             {
                 if (!MaterialExists(id))
                 {
-                    return NotFound();
+                    response.StatusCode = 404;
+                    response.StatusDescription = "Not Found";
                 }
                 else
                 {
@@ -84,42 +111,57 @@ namespace WildHeartsAPI.Controllers
                 }
             }
 
-            return NoContent();
+            response.StatusCode = 201;
+            response.StatusDescription = "Created";
+            return response;
         }
 
         // POST: api/Material
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Material>> PostMaterial(Material material)
+        public async Task<ActionResult<Models.Response>> PostMaterial(Material material)
         {
-          if (_context.Materials == null)
-          {
-              return Problem("Entity set 'WildHeartsAPIDBContext.Materials'  is null.");
-          }
-            _context.Materials.Add(material);
-            await _context.SaveChangesAsync();
+            var response = new Models.Response();
+            if (_context.Materials == null)
+            {
+                response.StatusCode = 400;
+                response.StatusDescription = "Bad Request: Entity set is null";
+            }
+            else
+            {
+                _context.Materials.Add(material);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMaterial", new { id = material.MaterialId }, material);
+                response.StatusCode = 201;
+                response.StatusDescription = "Created";
+            }
+            return response;
         }
 
         // DELETE: api/Material/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMaterial(int id)
+        public async Task<ActionResult<Models.Response>> DeleteMaterial(int id)
         {
+            var response = new Models.Response();
             if (_context.Materials == null)
             {
-                return NotFound();
+                response.StatusCode = 400;
+                response.StatusDescription = "Bad Request: Entity set is null";
             }
             var material = await _context.Materials.FindAsync(id);
             if (material == null)
             {
-                return NotFound();
+                response.StatusCode = 404;
+                response.StatusDescription = "Not Found";
             }
 
-            _context.Materials.Remove(material);
-            await _context.SaveChangesAsync();
+            else
+            {
+                _context.Materials.Remove(material);
+                await _context.SaveChangesAsync();
+            }
 
-            return NoContent();
+            return response;
         }
 
         private bool MaterialExists(int id)
